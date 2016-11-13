@@ -10,8 +10,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 {% load staticfiles %}
 	<title>Wedo a Corporate Flat bootstrap Responsive website Template | Home :: w3layouts</title>
 	<link href="{%static "css/style.css"%}" type="text/css" rel="stylesheet" media="all">
+	<link href="{%static "css/homepage/carousel.css"%}" type="text/css" rel="stylesheet" media="all">
 	<link href="{%static "css/bootstrap.css"%}" type="text/css" rel="stylesheet" media="all">
-	<link rel="stylesheet" type="text/css" href="{%static "css/default.css"%}" />
 	<link rel="stylesheet" type="text/css" href="{%static "css/component.css"%}" />
 	<!--web-font-->
 	<link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
@@ -27,6 +27,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!-- //Custom Theme files -->
 	<!-- js -->
 	<script src="static/js/jquery.min.js"></script>
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="{%static "js/homepage/carousel.js"%}"></script>
 	<!-- //js -->	
 	<!-- start-smoth-scrolling-->
 	<script type="text/javascript" src="{%static "js/move-top.js"%}"></script>
@@ -91,6 +94,29 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	</div>
 	<!--//header-->
 	<!--services-->
+	<div class="image-slider">
+		<div class="carousel-container">
+			<div class="container">
+		    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+		        <!-- Wrapper for slides -->
+		        {% include "faces.html" %}
+		        <!-- End Carousel Inner -->
+		        <ul class="nav nav-pills nav-justified">
+		            <li data-target="#myCarousel" data-slide-to="0" class="active"><a href="#">About<small>Lorem
+		                ipsum dolor sit</small></a></li>
+		            <li data-target="#myCarousel" data-slide-to="1"><a href="#">Projects<small>Lorem ipsum
+		                dolor sit</small></a></li>
+		            <li data-target="#myCarousel" data-slide-to="2"><a href="#">Portfolio<small>Lorem ipsum
+		                dolor sit</small></a></li>
+		            <li data-target="#myCarousel" data-slide-to="3"><a href="#">Services<small>Lorem ipsum
+		                dolor sit</small></a></li>
+		        </ul>
+		    </div>
+	    <!-- End Carousel -->
+	    </div>
+	</div>
+	
+	</div>
 	<div class="services">
 		<div class="container">
 			<h3>OUR SERVICES</h3>

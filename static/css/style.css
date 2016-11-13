@@ -161,6 +161,12 @@ ul.nav1{
   font-size: 13px;
   letter-spacing: 0.5px;
 }
+/*--image-slider--*/
+.carousel-container {
+  margin-top: 2em;
+}
+
+
 /*--portfolio--*/
 .portfolio {
   margin-top: 2em;
