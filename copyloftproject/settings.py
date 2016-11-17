@@ -81,16 +81,27 @@ WSGI_APPLICATION = 'copyloftproject.wsgi.application'
 #       'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #    }
 #}
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME': 'copyloft',
+#        'USER': 'postgres',
+#        'PASSWORD': 'B.I.T.C.H.',
+#        'HOST': 'localhost',
+#        'PORT': '5433',
+#    }
+#}
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'copyloft',
-        'USER': 'postgres',
-        'PASSWORD': 'B.I.T.C.H.',
-        'HOST': 'localhost',
-        'PORT': '5433',
+        'NAME': 'd5083t5vsbaht',
+        'USER': 'nufqhwyiqvuaiq',
+        'PASSWORD': 'yJTwu45zzOAHXLTddGUP0cX-Wh',
+        'HOST': 'ec2-54-243-210-223.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
