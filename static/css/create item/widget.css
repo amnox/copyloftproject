@@ -1,0 +1,40 @@
+.nav-tabs > li {
+    position:relative;
+}
+.nav-tabs > li > a {
+    display:inline-block;
+}
+.nav-tabs > li > a > img {
+    
+    content:url(../../images/createitem/cancel-inactive.png);
+    cursor:pointer;
+    padding-left:3px;
+    right: 3px;
+    top: 8px;
+    
+}
+
+.nav-tabs > li > a > img:hover {
+    display: inline-block;
+    content:url(../../images/createitem/cancel-active.png);
+}
+.add-more{
+	content:url(../../images/createitem/add-icon-active.png);
+	padding: 8px 3px 4px 5px;
+	height: 27%;
+    width: 27%;
+}
+.add-more:hover{
+	content:url(../../images/createitem/add-icon-hover.png);
+	padding: 8px 3px 4px 5px;
+	height: 27%;
+    width: 27%;
+}
+.add-more:active {
+	content:url(../../images/createitem/add-icon-clicked.png);
+	padding: 8px 3px 4px 5px;
+	height: 27%;
+    width: 27%;
+    transform: translateY(-2px) translateX(2px);
+    
+}
