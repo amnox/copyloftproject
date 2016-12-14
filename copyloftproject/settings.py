@@ -85,7 +85,15 @@ WSGI_APPLICATION = 'copyloftproject.wsgi.application'
 #}
 DATABASES={}
 
-DATABASES['default'] =  dj_database_url.config()
+DATABASES['local'] =  dj_database_url.config()
+DATABASES['default']={
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'copyloft',
+        'USER': 'postgres',
+        'PASSWORD': 'B.I.T.C.H.',
+        'HOST': 'localhost',
+        'PORT': '5433',
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators

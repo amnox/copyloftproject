@@ -4,7 +4,6 @@ class ParentContainer extends React.Component{
 		this.holder=this.holder.bind(this);
 		this.state=props.data.object;
 	}
-	
 	holder(){
 		return(
 	            <div className="panel with-nav-tabs panel-primary">
@@ -30,17 +29,14 @@ class NavTabs extends React.Component{
 		this.tabList=this.tabList.bind(this);
 		this.tab=this.tab.bind(this);
 		//this.remove=this.remove.bind(this);
-		this.bruteforce=this.bruteforce.bind(this);
+		
 		
 	}
+	
 
-	bruteforce(){
-		addTab();
-		this.forceUpdate();
-	}
 	tab(props){
 		return(
-			<li className={props.cls} id='fucktabs'><a href={props.href} data-toggle="tab">{props.name}<img onClick={() => remove(props.id)}/></a></li>	
+			<li className={props.cls}><a href={props.href} data-toggle="tab">{props.name}<img onClick={() => remove(props.id)}/></a></li>	
 		);
 	}
 	tabList(props){
@@ -50,7 +46,7 @@ class NavTabs extends React.Component{
 		);
 		return(<ul className="nav nav-tabs">
 			{listItems}
-			<li><img className="add-more" onClick={this.bruteforce}/></li>
+			<li><img className="add-more" onClick={addTab}/></li>
 		</ul>);
 	}
 	tabs(props){
@@ -72,25 +68,15 @@ class TabBodyUpload extends React.Component{
 	upload_area(props){
 		return(<div id={props.upload} className="dropzone" ></div>);
 	}
-
 	componentDidMount() {
 	      
 	      if (document.getElementById(this.props.upload_id)) {
-	    	  
-	    	  var myDropzone = new Dropzone('div#'+this.props.upload_id, {
-	    		  url:function(files){
-	    			  //return("/createitem/upload/");
-	    			  
-	    			  return getSignedRequest(files[0]);
-	    		  },
-	    		  uploadMultiple:"false",
+	    	  console.log('div#'+this.props.upload_id);
+	    	  var myDropzone = new Dropzone('div#'+this.props.upload_id, {url:"/createitem/upload/",uploadMultiple:"false",
 	    		  paramName: "file"+this.props.upload_id, // The name that will be used to transfer the file
 	    		  maxFilesize: 24,
 	    		  maxFiles: 1,
 	    		  addRemoveLinks:true,
-	    		  removedfile:function(file){
-	    			  $(document).find(file.previewElement).remove();
-	    		  },
 	    		  init: function() {
 	    		      this.on("maxfilesexceeded", function(file) {
 	    					alert('one file per tab');
@@ -119,7 +105,6 @@ class BodyTabs extends React.Component{
 	componentDidMount(){
 		this.showTab(this.props.data.tabs.tab_keys[0]);
 	}
-
 	showTab(id,cls){
 		if (document.getElementsByClassName(cls)){
 			var x = document.getElementsByClassName(cls);
@@ -134,9 +119,9 @@ class BodyTabs extends React.Component{
 			<div className="tabs tabs-style-bar">
 				<nav>
 					<ul>
-					  <li><a href="javascript:void(0)"  onClick={(e) => this.showTab(this.props.data.tabs.tab_keys[0],this.props.data.tabs.tab_keys[3])}>Upload</a></li>
-					  <li><a href="javascript:void(0)" className="" onClick={(e) => this.showTab(this.props.data.tabs.tab_keys[1],this.props.data.tabs.tab_keys[3])}>Page</a></li>
-					  <li><a href="javascript:void(0)" className="" onClick={(e) => this.showTab(this.props.data.tabs.tab_keys[2],this.props.data.tabs.tab_keys[3])}>Review</a></li>
+					  <li><a href="javascript:void(0)" onClick={(e) => this.showTab(this.props.data.tabs.tab_keys[0],this.props.data.tabs.tab_keys[3])}>Upload</a></li>
+					  <li><a href="javascript:void(0)" onClick={(e) => this.showTab(this.props.data.tabs.tab_keys[1],this.props.data.tabs.tab_keys[3])}>Page</a></li>
+					  <li><a href="javascript:void(0)" onClick={(e) => this.showTab(this.props.data.tabs.tab_keys[2],this.props.data.tabs.tab_keys[3])}>Review</a></li>
 					</ul>
 				</nav>
 				<div className="content-wrap">
@@ -166,7 +151,6 @@ class TabBody extends React.Component{
 		);
 		return (<div className="tab-content">{body}</div>);
 	}
-
 	tab_content(props){
 		return(
 			   <this.tab_body />
@@ -220,7 +204,7 @@ class Data{
 				  return num;
 			  }
 			});
-		
+		console.log(this.tabs.indexOf(match));
 		var index=this.tabs.indexOf(match);
 		this.tabs.splice(index, 1);
 		this.body.splice(index, 1);
@@ -228,57 +212,11 @@ class Data{
 	}
 	
 }
-function getSignedRequest(file){
-	  var xhr = new XMLHttpRequest();
-	  xhr.open("GET", "/createitem/upload/sign_s3/"+file.name+"/"+encodeURIComponent(file.type),false);
-	  xhr.onreadystatechange = function(){
-	    if(xhr.readyState === 4){
-	      if(xhr.status === 200){
-	        var response = JSON.parse(xhr.responseText);
-	        
-	      }
-	      else{
-	        return 'fuck';
-	      }
-	    }
-	  }
-	  xhr.send();
-	  if (xhr.status != 200) {
-		  console.log('you got fucked bro');
-		}
-	  var response = JSON.parse(xhr.responseText);
-      uploadFile(file, response.data, response.url);
-	  
-	  return '/createitem/upload/';
-	  
-	}
-function uploadFile(file, s3Data, url){
-	  var xhr = new XMLHttpRequest();
-	  xhr.open("POST", s3Data.url);
-
-	  var postData = new FormData();
-	  for(var key in s3Data.fields){
-	    postData.append(key, s3Data.fields[key]);
-	  }
-	  postData.append('file', file);
-
-	  xhr.onreadystatechange = function() {
-	    if(xhr.readyState === 4){
-	      if(xhr.status === 200 || xhr.status === 204){
-	        
-	      }
-	      else{
-	        alert("Could not upload file.");
-	      }
-	   }
-	  };
-	  xhr.send(postData);
-	}
 const test=new Data();
 function addTab(){
 	var key=test.addKey();
 	var bodytabs={'tab_keys':['upload_tab_'+key,'paper_tab_'+key,'review_tab_'+key,'sub-tab_'+key]};
-	var bodybody={uplaod:'upload-'+key ,cockblock:['disabled','disabled']};
+	var bodybody={uplaod:'upload-'+key};
 	var tabbody={tabs:bodytabs,body:bodybody};
 	
 	if (test.getKeys().length>1){
@@ -289,7 +227,7 @@ function addTab(){
 		}
 		
 		test.addItems([{href:"#tab"+key+"primary",name:"Primary "+key,cls:"active",'key':key}],[{id:'tab'+key+'primary',name:'aman',cls:'tab-pane fade active in','key':key,'body':tabbody}]);
-		
+		console.log(test.tabs);
 		
 	}
 	else{
@@ -297,52 +235,19 @@ function addTab(){
 	}
 	
 	ReactDOM.render(<ParentContainer data={test.getObjects()}/>,document.getElementById('root'));
-	var x = document.querySelectorAll('[id="fucktabs"]');
-	for (var i=0;i<=x.length-1;i++){
-		(x[i]).className='';
-		//console.log(x[i])
-	}
-	var y= document.getElementsByClassName('tab-pane fade active in');
-	for (var i=0;i<=y.length-1;i++){
-		(y[i]).className='tab-pane fade';
-		//console.log(x[i])
-	}
+	
+	
 }
 function remove(e){
 	test.deleteItem(e);
-	
+	if(test.getKeys().length>0){
+		test.body[test.body.length-1].cls='tab-pane fade active in';
+		test.tabs[test.tabs.length-1].cls='active';
+	}
 	
 	
 	ReactDOM.render(<ParentContainer data={test.getObjects()}/>,document.getElementById('root'));
-	var x = document.querySelectorAll('[id="fucktabs"]');
-	for (var i=0;i<=x.length-1;i++){
-		(x[i]).className='';
-		
-		//console.log(x[i])
-	}
-	var y= document.getElementsByClassName('tab-pane');
-	
-	for (var i=0;i<=y.length-1;i++){
-		(y[i]).className='tab-pane fade';
-		
-		//console.log(x[i])
-	}
-	var x = document.querySelectorAll('[id="fucktabs"]');
-	for (var i=0;i<=x.length-1;i++){
-		(x[i]).className='active';
-		break;
-		//console.log(x[i])
-	}
-	var y= document.getElementsByClassName('tab-pane');
-	
-	for (var i=0;i<=y.length-1;i++){
-		(y[i]).className='tab-pane fade active in';
-		break;
-		//console.log(x[i])
-	}
-	
-	
 }
-//'mimeTypes' => array('image/jpeg', 'image/png','image/jpg','application/vnd.ms-excel','application/vnd.openxmlformats-officedocument.wordprocessingml.document','application/docx','application/pdf','text/plain','application/msword','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'),
+//test.addItems([{href:"#tab1primary",name:"Primary 1",cls:"active"},{href:"#tab2primary",name:"Primary 2",cls:""},{href:"#tab3primary",name:"Primary 3",cls:""}],[{id:'tab1primary',name:'aman',cls:'tab-pane fade in active'},{id:'tab2primary',name:'mummy',cls:'tab-pane fade'},{id:'tab3primary',name:'annu',cls:'tab-pane fade'}]);
 Dropzone.autoDiscover = false;
 ReactDOM.render(<ParentContainer data={test.getObjects()}/>,document.getElementById('root'));
