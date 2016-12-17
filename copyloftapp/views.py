@@ -33,6 +33,7 @@ def sign_s3(request,butt,fuck):
     file_name = butt
     file_type = fuck
     buck=''
+    print os.environ.get('S3_BUCKET')
     if(os.environ.get('S3_BUCKET')==None):
         s3R = boto3.resource('s3')
         
