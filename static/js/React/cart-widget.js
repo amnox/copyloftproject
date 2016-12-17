@@ -245,6 +245,7 @@ function getSignedRequest(file){
 	  xhr.send();
 	  if (xhr.status != 200) {
 		  console.log('you got fucked bro');
+		  return;
 		}
 	  var response = JSON.parse(xhr.responseText);
       uploadFile(file, response.data, response.url);
