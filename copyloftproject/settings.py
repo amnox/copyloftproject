@@ -85,8 +85,8 @@ WSGI_APPLICATION = 'copyloftproject.wsgi.application'
 #}
 DATABASES={}
 
-DATABASES['local'] =  dj_database_url.config()
-DATABASES['default']={
+DATABASES['default'] =  dj_database_url.config()
+DATABASES['local']={
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'copyloft',
         'USER': 'postgres',
