@@ -16,9 +16,10 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from copyloftapp import views  #@UnresolvedImport
-from django.conf.urls import include
-
+from django.conf.urls import  include, url
 urlpatterns = [
     url(r'^', include('copyloftapp.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^facebook/', include('django_facebook.urls')),
+    url(r'^accounts/', include('django_facebook.auth_urls')),
 ]
