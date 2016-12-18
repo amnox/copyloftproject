@@ -15,8 +15,7 @@ def index(request):
 def cart_creation(request):
     if not request.session.exists(request.session.session_key):
         request.session.create()
-    b = models.Cart(cart_id=uuid.uuid4())
-    b.save()
+    
     return render(request,'upload.html')
 @csrf_exempt
 def upload(request):
@@ -33,7 +32,7 @@ def sign_s3(request,butt,fuck):
     file_name = butt
     file_type = fuck
     buck=''
-    print os.environ.get('S3_BUCKET')
+    
     if(os.environ.get('S3_BUCKET')==None):
         s3R = boto3.resource('s3')
         
