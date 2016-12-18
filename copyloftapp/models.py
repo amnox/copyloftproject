@@ -11,6 +11,7 @@ class InputData( models.Model ):
     unique_id = models.UUIDField(primary_key=True,blank=True ,editable=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
+<<<<<<< HEAD
     email_id = models.EmailField()
     password = models.CharField(max_length=30,default=None)
     mobile_number = models.TextField()
@@ -26,3 +27,23 @@ class Linkaddress(models.Model):
     created_on =models.DateField(default=timezone.now)
     class Meta:
         db_table = 'linkaddress'
+=======
+
+class Cart(models.Model):
+    MODES = (
+        ('L', 'login'),
+        ('S', 'session'),
+    )
+    user = models.ForeignKey(
+    Person,
+    on_delete=models.CASCADE,
+    verbose_name="Type of check-in",
+    )
+    cart_id = models.UUIDField()
+    created_time=models.DateTimeField(auto_now_add=True, blank=True)
+    creation_mode=models.CharField(
+        max_length=1,
+        choices=MODES,
+        default='S',)
+    
+>>>>>>> refs/remotes/amnox/master
