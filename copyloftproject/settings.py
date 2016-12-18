@@ -108,6 +108,18 @@ DATABASES={
     }
 }
 
+<<<<<<< HEAD
+=======
+DATABASES['local'] =  dj_database_url.config()
+DATABASES['default']={
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'copyloft',
+        'USER': 'postgres',
+        'PASSWORD': 'B.I.T.C.H.',
+        'HOST': 'localhost',
+        'PORT': '5433',
+    }
+>>>>>>> refs/remotes/amnox/master
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
