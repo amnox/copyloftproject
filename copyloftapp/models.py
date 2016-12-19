@@ -11,7 +11,6 @@ class InputData( models.Model ):
     unique_id = models.UUIDField(primary_key=True,blank=True ,editable=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
-<<<<<<< HEAD
     email_id = models.EmailField()
     password = models.CharField(max_length=30,default=None)
     mobile_number = models.TextField()
@@ -27,7 +26,6 @@ class Linkaddress(models.Model):
     created_on =models.DateField(default=timezone.now)
     class Meta:
         db_table = 'linkaddress'
-=======
 
 class Cart(models.Model):
     MODES = (
@@ -35,7 +33,7 @@ class Cart(models.Model):
         ('S', 'session'),
     )
     user = models.ForeignKey(
-    Person,
+    InputData,
     on_delete=models.CASCADE,
     verbose_name="Type of check-in",
     )
@@ -46,4 +44,3 @@ class Cart(models.Model):
         choices=MODES,
         default='S',)
     
->>>>>>> refs/remotes/amnox/master
