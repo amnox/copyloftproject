@@ -10,4 +10,6 @@ urlpatterns = [
     url(r'^createitem/$', views.cart_creation, name='create'),
     url(r'^createitem/upload/$', views.upload, name='fileupload'),
     url(r'^createitem/upload/sign_s3/(.*?)/(.*)$', views.sign_s3, name='signatureS3'),
+    url(r'^trial/$', views.example, name='trial'),
+
 ]

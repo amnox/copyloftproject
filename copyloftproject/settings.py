@@ -12,10 +12,6 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 import dj_database_url
-import logging
-
-logger = logging.getLogger(__name__)
-
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -43,10 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'crispy_forms',
-    'bootstrap3',
-    'django_facebook',
-
+	'django_facebook',
 ]
 
 MIDDLEWARE = [
@@ -74,15 +67,19 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django_facebook.context_processors.facebook',
             ],
         },
     },
 ]
+
 TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.contrib.auth.context_processors.auth',
-    'django.contrib.messages.context_processors.messages',
+
     'django_facebook.context_processors.facebook',
+)
+
+AUTHENTICATION_BACKENDS = (
+    'django_facebook.auth_backends.FacebookBackend',
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 WSGI_APPLICATION = 'copyloftproject.wsgi.application'
@@ -97,29 +94,17 @@ WSGI_APPLICATION = 'copyloftproject.wsgi.application'
 #       'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #    }
 #}
-DATABASES={
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'copyloft',
-        'USER': 'postgres',
-        'PASSWORD': 'vaiorahul',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
+DATABASES={}
 
-<<<<<<< HEAD
-=======
 DATABASES['local'] =  dj_database_url.config()
 DATABASES['default']={
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'copyloft',
         'USER': 'postgres',
-        'PASSWORD': 'B.I.T.C.H.',
+        'PASSWORD': 'vaiorahul',
         'HOST': 'localhost',
-        'PORT': '5433',
+        'PORT': '5432',
     }
->>>>>>> refs/remotes/amnox/master
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -138,12 +123,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-AUTHENTICATION_BACKENDS = (
-    'django_facebook.auth_backends.FacebookBackend',
 
-)
-
-AUTH_USER_MODEL = 'django_facebook.FacebookCustomUser'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
@@ -168,5 +148,6 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
 FACEBOOK_APP_ID='1930877120468998'
-FACEBOOK_API_SECRET='02941c554949f2077649901373a5e553'
+FACEBOOK_API_SECRET='31278f815fd562a7ba4ee44c7b8fec9f'

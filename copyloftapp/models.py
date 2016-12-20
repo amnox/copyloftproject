@@ -43,4 +43,6 @@ class Cart(models.Model):
         max_length=1,
         choices=MODES,
         default='S',)
+    class Meta:
+         db_table = 'carthere'
     

@@ -91,4 +91,7 @@ def sign_s3(request,butt,fuck):
     print response
     return HttpResponse(response)
     #return JsonResponse({})
-    
+
+def example(request):
+    context = {}
+    return render(request, 'trial.html', context)
