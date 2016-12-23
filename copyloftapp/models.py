@@ -23,7 +23,7 @@ class InputData( models.Model ):
 class Linkaddress(models.Model):
     unique_id = models.UUIDField(primary_key=True, blank=True , editable=True)
     address = models.TextField(default=None, blank=True, null=True)
-    created_on =models.DateField(default=timezone.now)
+    created_on =models.DateTimeField(default=datetime.now, blank=True)
     class Meta:
         db_table = 'linkaddress'
 
