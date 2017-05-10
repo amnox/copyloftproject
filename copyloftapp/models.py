@@ -3,11 +3,12 @@ import uuid
 from django.db import models
 from django.utils import timezone
 from datetime import datetime
-from django.db import models
+
 
 # Create your models here.
+
 class InputData( models.Model ):
-    unique_id = models.UUIDField(blank=True ,editable=True)
+    unique_id = models.UUIDField(primary_key=True,blank=True ,editable=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     email_id = models.EmailField()
@@ -20,7 +21,7 @@ class InputData( models.Model ):
             db_table = 'inputdata'
 
 class Linkaddress(models.Model):
-    unique_id = models.UUIDField( blank=True , editable=True)
+    unique_id = models.UUIDField(primary_key=True, blank=True , editable=True)
     address = models.TextField(default=None, blank=True, null=True)
     created_on =models.DateTimeField(default=datetime.now, blank=True)
     class Meta:
@@ -42,4 +43,6 @@ class Cart(models.Model):
         max_length=1,
         choices=MODES,
         default='S',)
+    class Meta:
+         db_table = 'carthere'
     

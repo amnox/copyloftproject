@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+	'django_facebook',
 ]
 
 MIDDLEWARE = [
@@ -71,6 +72,16 @@ TEMPLATES = [
     },
 ]
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+
+    'django_facebook.context_processors.facebook',
+)
+
+AUTHENTICATION_BACKENDS = (
+    'django_facebook.auth_backends.FacebookBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
 WSGI_APPLICATION = 'copyloftproject.wsgi.application'
 
 
@@ -90,9 +101,9 @@ DATABASES['default']={
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'copyloft',
         'USER': 'postgres',
-        'PASSWORD': 'B.I.T.C.H.',
+        'PASSWORD': 'vaiorahul',
         'HOST': 'localhost',
-        'PORT': '5433',
+        'PORT': '5432',
     }
 
 # Password validation
@@ -137,3 +148,6 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+FACEBOOK_APP_ID='1930877120468998'
+FACEBOOK_API_SECRET='31278f815fd562a7ba4ee44c7b8fec9f'
